@@ -1,97 +1,92 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# 🛒 Offline-First E-Commerce React Native App
 
-# Getting Started
+A high-performance, offline-first order entry application built in React Native using Realm for local persistence, designed to handle large datasets and ensure smooth user experience both online and offline.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+---
 
-## Step 1: Start Metro
+## ✨ Features
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+- ✅ Browse a list of 100,000+ products from local/mock source
+- ✅ Create, update, delete orders while offline
+- ✅ Orders stored locally using Realm
+- ✅ Sync queued orders automatically when back online
+- ✅ Network detection using `@react-native-community/netinfo`
+- ✅ Conflict resolution using “last-write-wins” strategy
+- ✅ Visual indicators for network & sync status
+- ✅ MVVM pattern + Clean architecture
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+---
 
-```sh
-# Using npm
-npm start
+## 🔧 Tech Stack
 
-# OR using Yarn
-yarn start
-```
+| Layer            | Technology                                  |
+|------------------|---------------------------------------------|
+| UI               | React Native                                |
+| State Mgmt       | Redux / useState (optional)                 |
+| Local DB         | Realm                                       |
+| Sync Engine      | Custom (with mock API or console log)       |
+| Network Monitor  | @react-native-community/netinfo             |
+| Architecture     | MVVM, Modular Folder Structure              |
 
-## Step 2: Build and run your app
+---
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+## 📁 Folder Structure
 
-### Android
+SRC/
+└── OffLineFirstCart/
+    ├── asset/
+    │   ├── products.json
+    │   └── images/
+    ├── Components/
+    │   ├── Header.js
+    │   └── ProductItem.js
+    ├── Databse/
+    │   ├── index.js
+    │   └── schemas/
+    │       ├── CartItemSchema.js
+    │       ├── OrderItemSchema.js
+    │       └── OrderSchema.js
+    ├── model/
+    │   ├── CartItemModel.js
+    │   ├── Product.js
+    │   └── ProductModel.js
+    ├── Redux/
+    │   ├── action.js
+    │   ├── constants.js
+    │   ├── reducer.js
+    │   ├── rootReducer.js
+    │   └── store.js
+    ├── Services/
+    │   ├── cartService.js
+    │   ├── OrderService.js
+    │   └── SyncService.js
+    ├── View/
+    │   └── ProductListScreen.js
+    ├── viewmodel/
+    │   └── ProductListViewModel.js
+    └── OtherModule/
 
-```sh
-# Using npm
-npm run android
+---
 
-# OR using Yarn
-yarn android
-```
+## 🚀 Getting Started
 
-### iOS
+### 1. Clone the Repository
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+git clone https://github.com/yourname/offline-cart-app.git
+cd offline-cart-app
+2. Install Dependencies
+npm install
+3. Start Metro Bundler
+npx react-native start
+4. Run on Device
+npx react-native run-android
+# or
+npx react-native run-ios
+🧪 Testing Features
+Scenario	Result
+No internet	Orders saved locally with isSynced: false
+Reconnects	Triggers automatic sync to server
+Duplicate edits on 2 devices Last write (based on timestamp) wins
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
-```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
-
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
-
-## Step 3: Modify your app
-
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+📦 Mock API
+The sync engine uses a mock API endpoint (or console.log) for demonstration. You can replace it with your real server logic.
